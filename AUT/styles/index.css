@@ -1,0 +1,14 @@
+﻿body
+{
+
+}
+#signincontainer
+{
+    position: absolute;
+    left: 100px;
+    top: 150px;
+}
+#reset{
+    position: relative;
+    left: 20px;
+}
