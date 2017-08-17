@@ -8,6 +8,12 @@
     left: 100px;
     top: 150px;
 }
+#signupcontainer
+{
+    position: absolute;
+    left: 700px;
+    top: 150px;
+}
 #reset{
     position: relative;
     left: 20px;
