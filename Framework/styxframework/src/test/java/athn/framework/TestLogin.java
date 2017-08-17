@@ -24,7 +24,7 @@ public class TestLogin {
 	}
 	@Test
 	public void test_fill_login(){
-		
+		objlogin.signin("admin", "admin");
 	}
 
 }
