@@ -8,4 +8,7 @@ Framework/.recommenders/
 Framework/RemoteSystemsTempFiles
 Framework/styxframework/.settings
 Framework/styxframework/.project
+Framework/styxframework/bin/.settings
+Framework/styxframework/bin/.project
 Framework/styxframework/.classpath
+Framework/styxframework/test-output/
