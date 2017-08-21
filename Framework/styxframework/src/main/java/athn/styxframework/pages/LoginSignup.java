@@ -2,7 +2,6 @@ package athn.styxframework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginSignup {
  WebDriver driver;
@@ -10,6 +9,9 @@ public class LoginSignup {
  By loginPassword = By.name("loginPassword");
  By loginBtn = By.name("signin");
  
+ public LoginSignup(WebDriver driver) {
+	 this.driver=driver;
+ }
  public void signin(String username, String password)
  {
 	 driver.findElement(loginUsername).sendKeys(username);

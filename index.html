@@ -9,7 +9,7 @@
             <h2>Sign in</h2>
             <label>Username: </label><input type="text" id="loginUsername" name="loginUsername" /> <br />
             <label>Password:</label><input type="password" id="loginPassword" name="loginPassword" /><br />
-            <input type="button" name="signin" id="signin" class="btnsignin" value="Sign in" />
+            <input type="button" name="signin" id="signin" class="btnsignin" value="Sign in" onclick="signinAlert()" />
             <input type="reset" name="reset" id="reset" class="btnreset" value="Reset" />
         </form>
     </div>
@@ -28,5 +28,17 @@
             <input type="reset" name="reset" id="reset" class="btnreset" value="Reset" />
         </form>
     </div>
+	<script>
+	function signinAlert() {
+		var username = document.forms["frmsignin"]["loginUsername"].value;
+		var password = document.forms["frmsignin"]["loginPassword"].value;
+		if (username == "admin" && password == "admin"){
+			alert("Succssfully Logged in!");
+		}
+		else {
+			alert("Invalid username or password!");
+		}
+	}
+</script>
 </body>
 </html>
