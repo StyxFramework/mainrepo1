@@ -9,3 +9,5 @@ Framework/RemoteSystemsTempFiles
 Framework/styxframework/.settings
 Framework/styxframework/.project
 Framework/styxframework/.classpath
+*.exe
+Framework/styxframework/test-output
