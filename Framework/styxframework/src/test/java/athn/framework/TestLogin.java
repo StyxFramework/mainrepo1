@@ -1,10 +1,6 @@
 package athn.framework;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,9 +33,10 @@ public class TestLogin {
         Sheet getSheet = objExcelFile.getSheet(filePath,"Styx.xlsx","Data");
         String loginUsername = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_username");
         String loginPassword = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_password");
+        String loginMessage = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_message");
 		objlogin = new LoginSignup(driver);
 		String outputMessage = objlogin.signin(loginUsername, loginPassword);
-		Assert.assertEquals(outputMessage, "Succssfully Logged in!", "Login Failed");
+		Assert.assertEquals(outputMessage, loginMessage, "Success");
 		driver.switchTo().alert().accept();
 	}
 	
