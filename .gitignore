@@ -1,13 +1,12 @@
-
+*.exe
 *.xmi
-
 *.zip
-
 Framework/.metadata/
 Framework/.recommenders/
 Framework/RemoteSystemsTempFiles
 Framework/styxframework/.settings
 Framework/styxframework/.project
+Framework/styxframework/bin/.settings
+Framework/styxframework/bin/.project
 Framework/styxframework/.classpath
-*.exe
-Framework/styxframework/test-output
+Framework/styxframework/test-output/
