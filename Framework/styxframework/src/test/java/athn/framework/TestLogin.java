@@ -29,8 +29,8 @@ public class TestLogin {
 		driver = new ChromeDriver();
 		driver.get("https://styxframework.github.io/mainrepo1/");
 	}
-	@Test//(dataProvider = "TestCases")
-	public void test_fill_login() throws IOException {
+	@Test(dataProvider = "TestCases")
+	public void test_fill_login(List<Integer> TestCase) throws IOException {
     	readFromExcel objExcelFile = new readFromExcel();
         String filePath = System.getProperty("user.dir")+"\\src\\main\\java\\excelOps";
         Sheet getSheet = objExcelFile.getSheet(filePath,"Styx.xlsx","Data");
@@ -42,16 +42,12 @@ public class TestLogin {
 	}
 
 	@DataProvider
-	public List TestCases() throws Exception{
-		ArrayList<Integer> runnableTests = new ArrayList<Integer>();
+	public Object[] TestCases() throws Exception{
+		String[] runnableTests = new String[8];
 		readFromExcel getTestCases = new readFromExcel();
 		String filePath = System.getProperty("user.dir")+"\\src\\main\\java\\excelOps";
-		Sheet getTCSheet = getTestCases.getSheet(filePath,"Styx.xlsx","Test");
+		Sheet getTCSheet = getTestCases.getSheet(filePath,"Styx.xlsx","Test_Cases");
 		runnableTests = getTestCases.getRunnableTestCases(getTCSheet);
-		for(int val: runnableTests){
-			System.out.println(val);
-		}
-		
 		Sheet getSheet = getTestCases.getSheet(filePath,"Styx.xlsx","Data");
 		int rowCount = getTestCases.getRowCount(getSheet);
 		return runnableTests;
