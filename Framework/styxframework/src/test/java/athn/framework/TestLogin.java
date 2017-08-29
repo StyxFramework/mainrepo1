@@ -39,6 +39,10 @@ public class TestLogin {
 		objlogin = new LoginSignup(driver);
 		String outputMessage = objlogin.signin(loginUsername, loginPassword);
 		Assert.assertEquals(outputMessage, "Succssfully Logged in!", "Login Failed");
+		
+		String signupresult = objlogin.signup("", "");
+		Assert.assertEquals(signupresult, "firstname and lastname are empty", "Signup alert passed");
+		driver.switchTo().alert().accept();
 	}
 
 	@DataProvider
