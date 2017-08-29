@@ -56,15 +56,23 @@ public class readFromExcel {
         return rowCount;
     }
     
-    public ArrayList<Integer> getRunnableTestCases(Sheet readSheet){
+    public String[] getRunnableTestCases(Sheet readSheet){
     	int rowTotal = getRowCount(readSheet);
-    	ArrayList<Integer> arrRunnable = new ArrayList<Integer>();
+    	ArrayList<String> arrRunnable = new ArrayList<String>();
+    	String runTests[] = new String[8];
     	for(int i=1;i<rowTotal;i++){
     		String runTest = readSheet.getRow(i).getCell(1).getStringCellValue();
     		if(runTest.contentEquals("Yes")){
-    			arrRunnable.add(i);
+    			arrRunnable.add(readSheet.getRow(i).getCell(0).getStringCellValue());
+    			System.out.println("Print TC "+readSheet.getRow(i).getCell(0).getStringCellValue());
     		}
     	}
-		return arrRunnable;
+    	int j=1;
+    	for(String val: arrRunnable){
+    		System.out.println(val);
+    		runTests[j] = val;
+    		j=j+1;
+    	}
+		return runTests;
     }
 }
