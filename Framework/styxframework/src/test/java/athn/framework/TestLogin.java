@@ -40,6 +40,20 @@ public class TestLogin {
 		driver.switchTo().alert().accept();
 	}
 	
+	@Test(dataProvider = "TestCases")
+	public void test_fill_signup(String[] TestCase) throws IOException {
+    	readFromExcel objExcelFile = new readFromExcel();
+        String filePath = System.getProperty("user.dir")+"\\src\\main\\java\\excelOps";
+        Sheet getSheet = objExcelFile.getSheet(filePath,"Styx.xlsx","Data");
+        String loginUsername = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_username");
+        String loginPassword = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_password");
+        String loginMessage = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_message");
+		objlogin = new LoginSignup(driver);
+		String outputMessage = objlogin.signin(loginUsername, loginPassword);
+		Assert.assertEquals(outputMessage, loginMessage, "Success");
+		driver.switchTo().alert().accept();		
+	}
+	
 	@AfterTest
 	public void closeChrome(){
 	driver.quit();
