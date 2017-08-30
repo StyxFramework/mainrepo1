@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,24 +14,29 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class readFromExcel {
 
     public Sheet getSheet(String filePath,String fileName,String sheetName) throws IOException {
-
-    File file = new File(filePath+"\\"+fileName);
-    FileInputStream inputStream = new FileInputStream(file);
-    Workbook readWb = null;
-    String fileExtensionName = fileName.substring(fileName.indexOf("."));
-    if(fileExtensionName.equals(".xlsx")){
-    	readWb = new XSSFWorkbook(inputStream);
-    }
-    else if(fileExtensionName.equals(".xls")){
-    	readWb = new HSSFWorkbook(inputStream);
-    }
-    Sheet readSheet = readWb.getSheet(sheetName);
-    return readSheet;
+    	try{
+		    File file = new File(filePath+"\\"+fileName);
+		    FileInputStream inputStream = new FileInputStream(file);
+		    Workbook readWb = null;
+		    String fileExtensionName = fileName.substring(fileName.indexOf("."));
+		    if(fileExtensionName.equals(".xlsx")){
+		    	readWb = new XSSFWorkbook(inputStream);
+		    }
+		    else if(fileExtensionName.equals(".xls")){
+		    	readWb = new HSSFWorkbook(inputStream);
+		    }
+		    Sheet readSheet = readWb.getSheet(sheetName);
+		    return readSheet;
+         }
+    	catch(IOException f){
+    		System.out.println(f.getMessage());
+    		return null;
+    	}
     }
     
-    public String getValueFromSheet(Sheet readSheet, String columnName){
+    public String getValueFromSheet(Sheet readSheet, String testCaseName, String columnName){
       String getValue;
-      Row row = readSheet.getRow(1);
+      Row row = readSheet.getRow(getRowNum(readSheet, testCaseName));
       int colNum = getColNum(readSheet, columnName);
       getValue = row.getCell(colNum).getStringCellValue();
       return getValue;
@@ -51,6 +55,19 @@ public class readFromExcel {
     	return 0;
     }
     
+    public int getRowNum(Sheet readSheet, String cellValue){
+    	int rowCount = getRowCount(readSheet);
+    	String rowContent;
+    	int i;
+    	for(i = 1;i<=rowCount;i++) {
+    		rowContent = readSheet.getRow(i).getCell(0).getStringCellValue();
+    		if (rowContent.equals(cellValue)){
+    			return i;
+    		}
+    	}
+    	return 0;
+    }
+    
     public int getRowCount(Sheet readSheet){
         int rowCount = readSheet.getLastRowNum()-readSheet.getFirstRowNum();
         return rowCount;
@@ -59,20 +76,13 @@ public class readFromExcel {
     public String[] getRunnableTestCases(Sheet readSheet){
     	int rowTotal = getRowCount(readSheet);
     	ArrayList<String> arrRunnable = new ArrayList<String>();
-    	String runTests[] = new String[8];
-    	for(int i=1;i<rowTotal;i++){
+    	for(int i=1;i<=rowTotal;i++){
     		String runTest = readSheet.getRow(i).getCell(1).getStringCellValue();
     		if(runTest.contentEquals("Yes")){
     			arrRunnable.add(readSheet.getRow(i).getCell(0).getStringCellValue());
-    			System.out.println("Print TC "+readSheet.getRow(i).getCell(0).getStringCellValue());
     		}
     	}
-    	int j=1;
-    	for(String val: arrRunnable){
-    		System.out.println(val);
-    		runTests[j] = val;
-    		j=j+1;
-    	}
+    	String[] runTests = arrRunnable.toArray(new String[arrRunnable.size()]);
 		return runTests;
     }
 }

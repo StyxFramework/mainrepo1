@@ -11,6 +11,14 @@ public class LoginSignup {
  By lastname = By.name("lastname");
  By signupbtn = By.name("signup");
  By loginBtn = By.name("signin");
+ By signupFirstName = By.name("signupFirstName");
+ By signupLastName = By.name("signupLastName");
+ By signupDOB = By.name("signupDOB");
+ By signupEmail = By.name("signupEmail");
+ By signupPhone = By.name("signupPhone");
+ By signupUserName = By.name("signupUserName");
+ By signupPassword = By.name("signupPassword");
+ By signupBtn = By.name("signup");
  
  public LoginSignup(WebDriver driver) {
 	 this.driver=driver;
@@ -26,13 +34,17 @@ public class LoginSignup {
 	 return alertMessage;
  }
  
- public String signup(String firstname, String lastname)
+ public String signup(String firstname, String lastname, String dob, String email, String phone, String username, String password)
  {
-	 driver.findElement(this.firstname).sendKeys(firstname);
-	 driver.findElement(this.lastname).sendKeys(lastname);
-	 driver.findElement(signupbtn).click();
+	 driver.findElement(signupFirstName).sendKeys(firstname);
+	 driver.findElement(signupLastName).sendKeys(lastname);
+	 driver.findElement(signupDOB).sendKeys(dob);
+	 driver.findElement(signupEmail).sendKeys(email);
+	 driver.findElement(signupPhone).sendKeys(phone);
+	 driver.findElement(signupUserName).sendKeys(username);
+	 driver.findElement(signupPassword).sendKeys(password);
+	 driver.findElement(signupBtn).click();
 	 String alertMessage = driver.switchTo().alert().getText();
 	 return alertMessage;
  }
-
 }
