@@ -45,12 +45,17 @@ public class TestLogin {
     	readFromExcel objExcelFile = new readFromExcel();
         String filePath = System.getProperty("user.dir")+"\\src\\main\\java\\excelOps";
         Sheet getSheet = objExcelFile.getSheet(filePath,"Styx.xlsx","Data");
-        String loginUsername = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_username");
-        String loginPassword = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_password");
-        String loginMessage = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"login_message");
+        String signupFirstName = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_firstname");
+        String signupLastName = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_lastname");
+        String signupDOB = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_dob");
+        String signupEmail = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_email");
+        String signupPhone = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_phone");
+        String signupUserName = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_username");
+        String signupPassWord = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_password");
+        String signupMessage = objExcelFile.getValueFromSheet(getSheet,TestCase[0],"signup_message");
 		objlogin = new LoginSignup(driver);
-		String outputMessage = objlogin.signin(loginUsername, loginPassword);
-		Assert.assertEquals(outputMessage, loginMessage, "Success");
+		String outputMessage = objlogin.signup(signupFirstName, signupLastName, signupDOB, signupEmail, signupPhone, signupUserName, signupPassWord);
+		Assert.assertEquals(outputMessage, signupMessage, "Success");
 		driver.switchTo().alert().accept();		
 	}
 	
