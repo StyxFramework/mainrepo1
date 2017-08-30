@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
     <title> Styx Framework AUT</title>
     <link href="AUT/styles/index.css" rel="stylesheet" />
@@ -16,15 +16,15 @@
     <div id="signupcontainer">
         <form name="frmsignup" id="frmsignup">
             <h2>Sign Up</h2>
-            <label>First Name: </label><input id = "firstname" name = "firstname" type="text" /> <br />
-            <label>Last Name: </label><input type="text" id = "lastname" name = "lastname" /><br />
-            <label>DOB: </label><input type="date" /> <br />
-            <label>Gender: </label><input type="radio" name="gender" value="male" />Male <input type="radio" name="gender" value="female" />Female<br />
-            <label>Email: </label><input type="email" /> <br />
-            <label>Phone: </label><input type="tel" /> <br />
-            <label>Username: </label><input type="text" /> <br />
-            <label>New Password: </label><input type="password" /> <br />
-            <input type="button" name="signup" id="signup" class="btnsignup" value="Sign Up" onclick="signupAlert()" />
+            <label>First Name: </label><input type="text" id="signupFirstName" name="signupFirstName" /> <br />
+            <label>Last Name: </label><input type="text" id="signupLastName" name="signupLastName" /><br />
+            <label>DOB: </label><input type="date" id="signupDOB" name="signupDOB" /> <br />
+            <label>Gender: </label><input type="radio" name="signupGender" value="male" />Male <input type="radio" name="signupGender" value="female" />Female<br />
+            <label>Email: </label><input type="email" id="signupEmail" name="signupEmail" /> <br />
+            <label>Phone: </label><input type="tel" id="signupPhone" name="signupPhone" /> <br />
+            <label>Username: </label><input type="text" id="signupUserName" name="signupUserName" /> <br />
+            <label>New Password: </label><input type="password" id="signupPassword" name="signupPassword" /> <br />
+            <input type="button" name="signup" id="signup" class="btnsignup" value="Sign Up"  onclick="signupAlert()" />
             <input type="reset" name="reset" id="reset" class="btnreset" value="Reset" />
         </form>
     </div>
@@ -33,19 +33,28 @@
 		var username = document.forms["frmsignin"]["loginUsername"].value;
 		var password = document.forms["frmsignin"]["loginPassword"].value;
 		if (username == "admin" && password == "admin"){
-			alert("Succssfully Logged in!");
+			alert("Successfully Logged in!");
 		}
 		else {
 			alert("Invalid username or password!");
 		}
 	}
-    function signupAlert() {
-        var firstname = document.forms["frmsignup"]["firstname"].value;
-        var lastname = document.forms["frmsignup"]["lastname"].value;
-        if (firstname == '' && lastname == ''){
-            alert("firstname and lastname are empty")
-          }
-    }
+	function signupAlert() {
+	    var firstname = document.forms["frmsignup"]["signupFirstName"].value;
+	    var lastname = document.forms["frmsignup"]["signupLastName"].value;
+	    var dob = document.forms["frmsignup"]["signupDOB"].value;
+	    var gender = document.forms["frmsignup"]["signupGender"].value;
+	    var email = document.forms["frmsignup"]["signupEmail"].value;
+	    var phone = document.forms["frmsignup"]["signupPhone"].value;
+	    var username = document.forms["frmsignup"]["signupUserName"].value;
+	    var password = document.forms["frmsignup"]["signupPassword"].value;
+	    if (firstname == "" || lastname == "" || dob == "" || email == "" || username == "" || password == "") {
+	        alert("Please enter mandatory fields");
+	    }
+	    else {
+	        alert("Thanks for signing up");
+	    }
+	}
 </script>
 </body>
 </html>
